@@ -115,7 +115,7 @@
   document.querySelectorAll('[data-target]').forEach(el => statsObs.observe(el));
 
   // Send selected plan inquiry to WhatsApp
-  const WHATSAPP_NUMBER = '201034487483';
+  const WHATSAPP_NUMBER = '201118341567';
 
   function getPlanText(btn) {
     const card = btn.closest('.plan-card');

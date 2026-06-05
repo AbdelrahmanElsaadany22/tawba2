@@ -933,9 +933,15 @@
     color: var(--gold);
     margin-bottom: 0.5rem;
   }
+  .footer-logo-img {
+    display: block;
+    width: min(240px, 65vw);
+    height: auto;
+    margin: 0 auto 0.75rem;
+  }
   .footer-tagline {
-    font-family: var(--font-arabic);
-    font-size: 0.85rem;
+    font-family: var(--font-arabi);
+    font-size: 1.2rem;
     color: #7E699A;
     margin-bottom: 1.5rem;
   }
