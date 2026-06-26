@@ -48,7 +48,7 @@ const Navbar = () => {
         src="/assets/logo.png"
         alt="أكاديمية توبة"
         className={`object-contain transition-all duration-300 ${
-          scrolled ? 'h-36' : 'h-40'
+          scrolled ? 'h-8 md:h-36' : 'h-10 md:h-40'
         }`}
       />
     </picture>
