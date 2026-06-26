@@ -1,25 +1,19 @@
 [api]
 enabled = true
-port = 54321
 schemas = ["public", "graphql_public"]
 extra_search_path = ["public"]
 
 [db]
-port = 54322
 major_version = 15
 
 [studio]
 enabled = true
-port = 54323
 
 [analytics]
 enabled = true
-port = 54324
-vector_path = "/api/analytics"
 
 [auth]
 enabled = true
-port = 54325
 site_url = "http://localhost:5173"
 additional_redirect_urls = ["http://localhost:5173/**"]
 jwt_expiry = 3600
@@ -27,14 +21,20 @@ enable_signup = true
 
 [edge_runtime]
 enabled = true
-port = 54326
 policy = "per_worker"
 
-[functions]
+[functions."assign-teacher"]
+enabled = true
+verify_jwt = false
+
+[functions."create-checkout-session"]
+enabled = true
+verify_jwt = false
+
+[functions."stripe-webhook"]
 enabled = true
 verify_jwt = false
 
 [storage]
 enabled = true
-port = 54327
 file_size_limit = "50MB"
