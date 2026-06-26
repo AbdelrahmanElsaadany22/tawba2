@@ -26,6 +26,8 @@ export const useAuth = () => {
     isStudent:   profile?.role === 'student',
     isTeacher:   profile?.role === 'teacher',
     isAdmin:     profile?.role === 'admin',
-    loading,
+    // Stay "loading" until the profile (and therefore role) is fetched,
+    // otherwise route guards decide with role=null and bounce the user to '/'.
+    loading:     loading || (!!session?.user && !profile),
   };
 };
