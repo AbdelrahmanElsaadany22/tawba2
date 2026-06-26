@@ -18,6 +18,10 @@ export const usePlans = () => {
         if (err) setError(err.message);
         else setPlans(data ?? []);
         setLoading(false);
+      })
+      .catch((err) => {
+        setError(err?.message || 'Network error');
+        setLoading(false);
       });
   }, []);
 

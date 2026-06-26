@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import HeroSection from '../components/home/HeroSection';
@@ -6,16 +7,20 @@ import PlansSection from '../components/home/PlansSection';
 import HowItWorksSection from '../components/home/HowItWorksSection';
 import CTASection from '../components/home/CTASection';
 
-const HomePage = () => (
-  <>
-    <Navbar />
-    <HeroSection />
-    <WhySection />
-    <PlansSection />
-    <HowItWorksSection />
-    <CTASection />
-    <Footer />
-  </>
-);
+const HomePage = () => {
+  const revealRef = useScrollReveal();
+
+  return (
+    <div ref={revealRef}>
+      <Navbar />
+      <HeroSection />
+      <WhySection />
+      <PlansSection />
+      <HowItWorksSection />
+      <CTASection />
+      <Footer />
+    </div>
+  );
+};
 
 export default HomePage;

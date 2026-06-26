@@ -9,7 +9,7 @@ const TestimonialsManager = () => {
   useEffect(() => {
     supabase
       .from('testimonials')
-      .select('*, student:profiles!student_id(name, avatar_url)')
+      .select('*')
       .order('created_at', { ascending: false })
       .then(({ data }) => { setTestimonials(data ?? []); setLoading(false); });
   }, []);
@@ -46,12 +46,12 @@ const TestimonialsManager = () => {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <img
-                    src={t.student?.avatar_url ?? '/assets/main.png'}
+                    src={t.avatar_url ?? '/assets/main.png'}
                     className="w-10 h-10 rounded-full object-cover border border-purple/40"
-                    alt={t.student?.name}
+                    alt={t.author_name}
                   />
                   <div>
-                    <p className="text-white font-semibold text-sm">{t.student?.name ?? '—'}</p>
+                    <p className="text-white font-semibold text-sm">{t.author_name}</p>
                     <p className="text-gray-400 text-xs">
                       {new Date(t.created_at).toLocaleDateString('ar-SA')}
                     </p>

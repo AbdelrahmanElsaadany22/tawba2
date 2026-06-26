@@ -1,9 +1,9 @@
-import { usePlans } from '../../../hooks/usePlans';
+import { useAdminPlans } from '../../../hooks/useAdminPlans';
 import { formatSAR } from '../../../utils/formatCurrency';
 import LoadingSpinner from '../../common/LoadingSpinner';
 
 const PlansManager = () => {
-  const { plans, loading } = usePlans();
+  const { plans, loading } = useAdminPlans();
   if (loading) return <LoadingSpinner />;
 
   return (
@@ -19,6 +19,7 @@ const PlansManager = () => {
               <th className="pb-3">السعر الأصلي</th>
               <th className="pb-3">السعر بعد الخصم</th>
               <th className="pb-3">الخصم</th>
+              <th className="pb-3">نشط</th>
               <th className="pb-3">الأكثر طلباً</th>
             </tr>
           </thead>
@@ -31,6 +32,7 @@ const PlansManager = () => {
                 <td className="py-3 text-gray-400 line-through">{formatSAR(p.original_price)}</td>
                 <td className="py-3 text-gold font-bold">{formatSAR(p.discounted_price)}</td>
                 <td className="py-3 text-red-400">{p.discount_percent}%</td>
+                <td className="py-3">{p.is_active ? '✅' : '❌'}</td>
                 <td className="py-3">{p.is_featured ? '⭐' : '—'}</td>
               </tr>
             ))}

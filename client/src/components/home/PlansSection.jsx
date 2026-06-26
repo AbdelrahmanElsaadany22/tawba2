@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePlans } from '../../hooks/usePlans';
-import { useCheckout } from '../../hooks/useCheckout';
 import PlanCard from '../plans/PlanCard';
 import PlanCategoryBtn from '../plans/PlanCategoryBtn';
 import PlanTabs from '../plans/PlanTabs';
@@ -9,15 +9,15 @@ import LoadingSpinner from '../common/LoadingSpinner';
 const PlansSection = () => {
   const { grouped, loading, error } = usePlans();
   const [category, setCategory] = useState('quarterly');
-  const [duration, setDuration] = useState(30);
-  const { startCheckout } = useCheckout();
+  const [duration, setDuration] = useState(60);
+  const navigate = useNavigate();
 
   const currentPlans = grouped[`${category}${duration}`] ?? [];
   const categoryLabel = category === 'quarterly' ? '3 شهور' : 'شهري';
   const isQuarterly = category === 'quarterly';
 
   const handleSubscribe = (planId) => {
-    startCheckout(planId);
+    navigate(`/checkout/${planId}`);
   };
 
   if (loading) return <LoadingSpinner text="جاري تحميل الباقات..." />;
