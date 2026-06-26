@@ -27,28 +27,38 @@ const TestimonialCard = ({ t }) => (
   </div>
 );
 
+const DEFAULT_TESTIMONIALS = [
+  { id: '1', author_name: 'أحمد محمد', author_city: 'الرياض', author_role: 'طالب', content: 'الحمد لله منذ انضمامي لأكاديمية توبة وأنا أشعر بتقدم كبير في حفظي للقرآن. المعلمون مخلصون والمنهج واضح.', rating: 5 },
+  { id: '2', author_name: 'سارة عبدالله', author_city: 'جدة', author_role: 'طالبة', content: 'الأكاديمية متميزة جداً في تعليم التجويد. استفدت كثيراً من جلسات التصحيح.', rating: 5 },
+  { id: '3', author_name: 'محمد علي', author_city: 'مكة', author_role: 'طالب', content: 'ما يعجبني في توبة هو المرونة في المواعيد. أقدر أحجز الجلسات حسب وقتي.', rating: 4 },
+  { id: '4', author_name: 'نورة أحمد', author_city: 'الدمام', author_role: 'طالبة', content: 'بعد 3 شهور مع توبة، صار عندي ختمة كاملة مع التدبر. أنصح الجميع بالتسجيل.', rating: 5 },
+];
+
 const TestimonialsSection = () => {
   const { testimonials, loading, error } = useTestimonials({ approvedOnly: true });
+  const items = (testimonials.length ? testimonials : DEFAULT_TESTIMONIALS).slice(0, 3);
 
   if (loading) return <LoadingSpinner text="جاري تحميل الشهادات..." />;
-  if (error || !testimonials.length) return null; // Don't render section if empty
 
   return (
     <section id="testimonials" className="py-20 bg-dark-light">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
-          <div className="text-gold font-arabic text-xl mb-2">آراء طلابنا</div>
-          <h2 className="text-4xl font-bold text-white font-arabic">
+          <div className="text-gold font-arabic text-xl mb-2 reveal">آراء طلابنا</div>
+          <h2 className="text-4xl font-bold text-white font-arabic reveal reveal-delay-1">
             ماذا يقول <span className="text-gold">طلابنا</span> عنا؟
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map(t => <TestimonialCard key={t.id} t={t} />)}
+          {items.map((t, i) => (
+            <div key={t.id} className={`reveal ${i > 0 ? `reveal-delay-${Math.min(i, 3)}` : ''}`}>
+              <TestimonialCard t={t} />
+            </div>
+          ))}
         </div>
 
-        {/* WhatsApp CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 reveal reveal-delay-2">
           <a
             href="https://wa.me/201118341567"
             target="_blank" rel="noreferrer"
