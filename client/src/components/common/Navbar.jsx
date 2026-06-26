@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { supabase } from '../../lib/supabaseClient';
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const session = useAuthStore(s => s.session);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -22,6 +23,15 @@ const Navbar = () => {
 
   const handleNavClick = () => {
     setOpen(false);
+  };
+
+  const handleHashLink = (sectionId) => {
+    setOpen(false);
+    if (location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(`/#${sectionId}`);
+    }
   };
 
   return (
@@ -54,10 +64,10 @@ const Navbar = () => {
           open ? 'flex' : 'hidden'
         } md:flex flex-col md:flex-row gap-6 absolute md:static top-16 right-0 w-full md:w-auto bg-dark/95 md:bg-transparent p-6 md:p-0 font-arabic items-center`}
       >
-        <li><a href="/#why" onClick={handleNavClick} className="text-light-text hover:text-gold transition-colors">لماذا توبة؟</a></li>
-        <li><a href="/#plans" onClick={handleNavClick} className="text-light-text hover:text-gold transition-colors">الخطط</a></li>
-        <li><a href="/#testimonials" onClick={handleNavClick} className="text-light-text hover:text-gold transition-colors">آراء الطلاب</a></li>
-        <li><a href="/#howto" onClick={handleNavClick} className="text-light-text hover:text-gold transition-colors">كيف تبدأ؟</a></li>
+        <li><button onClick={() => handleHashLink('why')} className="text-light-text hover:text-gold transition-colors">لماذا توبة؟</button></li>
+        <li><button onClick={() => handleHashLink('plans')} className="text-light-text hover:text-gold transition-colors">الخطط</button></li>
+        <li><button onClick={() => handleHashLink('testimonials')} className="text-light-text hover:text-gold transition-colors">آراء الطلاب</button></li>
+        <li><button onClick={() => handleHashLink('howto')} className="text-light-text hover:text-gold transition-colors">كيف تبدأ؟</button></li>
         {session ? (
           <>
             <li><Link to="/dashboard" onClick={handleNavClick} className="text-light-text hover:text-gold transition-colors">لوحتي</Link></li>
