@@ -18,7 +18,7 @@ as $$
   );
 $$;
 
-revoke execute on function is_admin() from public, anon, authenticated;
+grant execute on function is_admin() to public, anon, authenticated;
 
 -- profiles
 drop policy if exists "Users view own profile" on profiles;
