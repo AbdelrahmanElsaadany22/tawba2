@@ -35,6 +35,10 @@ verify_jwt = false
 enabled = true
 verify_jwt = false
 
+[functions."send-email"]
+enabled = true
+verify_jwt = false
+
 [storage]
 enabled = true
 file_size_limit = "50MB"

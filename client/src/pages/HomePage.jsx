@@ -5,6 +5,7 @@ import HeroSection from '../components/home/HeroSection';
 import WhySection from '../components/home/WhySection';
 import PlansSection from '../components/home/PlansSection';
 import HowItWorksSection from '../components/home/HowItWorksSection';
+import TestimonialsSection from '../components/home/TestimonialsSection';
 import CTASection from '../components/home/CTASection';
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
       <WhySection />
       <PlansSection />
       <HowItWorksSection />
+      <TestimonialsSection />
       <CTASection />
       <Footer />
     </div>
