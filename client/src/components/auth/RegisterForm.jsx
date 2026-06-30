@@ -18,7 +18,7 @@ const RegisterForm = () => {
     const { error: signUpError } = await supabase.auth.signUp({
       email:    form.email,
       password: form.password,
-      options:  { data: { name: form.name } },
+      options:  { data: { name: form.name, phone: form.phone } },
     });
 
     if (signUpError) {
@@ -47,8 +47,8 @@ const RegisterForm = () => {
         className="bg-dark-light border border-purple/40 text-white px-4 py-3 rounded-xl placeholder-gray-500 focus:border-gold focus:outline-none"
       />
       <input
-        name="phone" value={form.phone} onChange={handleChange}
-        placeholder="رقم الواتساب (اختياري)"
+        name="phone" value={form.phone} onChange={handleChange} required
+        placeholder="رقم الواتساب"
         type="tel"
         className="bg-dark-light border border-purple/40 text-white px-4 py-3 rounded-xl placeholder-gray-500 focus:border-gold focus:outline-none"
       />
