@@ -15,11 +15,6 @@ const Footer = () => (
     </ul>
     <p className="text-gray-600 text-sm">
       © 2024 أكاديمية توبة — جميع الحقوق محفوظة
-      <br />
-      Developed by{' '}
-      <a href="https://wa.me/201128973243" target="_blank" rel="noreferrer" className="text-gold hover:underline">
-        Abdelrahman Elsayed & Ali Ragab
-      </a>
     </p>
   </footer>
 );
